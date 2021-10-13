@@ -4,6 +4,7 @@ const cartController = require('../app/http/controllers/customers/cartController
 const orderController = require('../app/http/controllers/customers/orderController')
 const adminOrderController = require('../app/http/controllers/admin/orderController')
 const statusController = require('../app/http/controllers/admin/statusController')
+const adminPizzaController = require('../app/http/controllers/admin/pizzaController')
 
 // Middlewares 
 const guest = require('../app/http/middlewares/guest')
@@ -27,6 +28,10 @@ function initRoutes(app) {
     app.get('/customer/orders/:id', auth, orderController().show)
 
     // Admin routes
+    app.get('/admin/pizza', admin, adminPizzaController().show)
+    app.get('/admin/action/create', admin, adminPizzaController().create)
+    app.post('/admin/pizza/store', admin, adminPizzaController().store)
+    app.delete('/admin/:id', admin, adminPizzaController().delete)
     app.get('/admin/orders', admin, adminOrderController().index)
     app.post('/admin/order/status', admin, statusController().update)
 }

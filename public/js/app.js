@@ -28118,7 +28118,18 @@ function _initStripe() {
 
           case 2:
             stripe = _context2.sent;
-            card = null; // function mountWidget() {
+            card = null;
+            paymentType = document.querySelector('#paymentType');
+
+            if (paymentType) {
+              _context2.next = 7;
+              break;
+            }
+
+            return _context2.abrupt("return");
+
+          case 7:
+            // function mountWidget() {
             //         const elements = stripe.elements()
             //     let style = {
             //         base: {
@@ -28138,17 +28149,6 @@ function _initStripe() {
             //     card = elements.create('card', { style, hidePostalCode: true })
             //     card.mount('#card-element')
             // }
-
-            paymentType = document.querySelector('#paymentType');
-
-            if (paymentType) {
-              _context2.next = 7;
-              break;
-            }
-
-            return _context2.abrupt("return");
-
-          case 7:
             paymentType.addEventListener('change', function (e) {
               if (e.target.value === 'card') {
                 // Display Widget

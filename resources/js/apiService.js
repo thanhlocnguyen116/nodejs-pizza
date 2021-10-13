@@ -1,5 +1,5 @@
 import axios from 'axios'
- import Noty from 'noty'
+import Noty from 'noty'
 
 export function placeOrder(formObject) {
     axios.post('/orders', formObject).then((res) => {
@@ -12,7 +12,7 @@ export function placeOrder(formObject) {
         setTimeout(() => {
             window.location.href = '/customer/orders';
         }, 1000);
-    }).catch((err)=> {
+    }).catch((err) => {
         new Noty({
             type: 'success',
             timeout: 1000,

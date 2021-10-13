@@ -199,6 +199,14 @@ section.status {
     }
 }
 
+.modal {
+    transition: opacity 0.25s ease;
+  }
+body.modal-active {
+    overflow-x: hidden;
+    overflow-y: visible !important;
+}
+
 .StripeElement {
     box-sizing: border-box;
     width: 50%;
@@ -226,3 +234,5 @@ section.status {
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+
+
