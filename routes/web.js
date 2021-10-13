@@ -31,7 +31,7 @@ function initRoutes(app) {
     app.get('/admin/pizza', admin, adminPizzaController().show)
     app.get('/admin/action/create', admin, adminPizzaController().create)
     app.post('/admin/pizza/store', admin, adminPizzaController().store)
-    app.delete('/admin/:id', admin, adminPizzaController().delete)
+    app.delete('admin/pizza/:id', admin, adminPizzaController().delete)
     app.get('/admin/orders', admin, adminOrderController().index)
     app.post('/admin/order/status', admin, statusController().update)
 }

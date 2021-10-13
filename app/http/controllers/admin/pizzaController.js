@@ -24,7 +24,7 @@ function FoodController () {
         },
 
         delete(req, res, next) {
-            Food.delete({ _id: req.params.id })
+            Pizza.deleteOne({ _id: req.params.id })
                 .then(() => res.redirect('back'))
                 .catch(next);
         },
