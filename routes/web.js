@@ -1,10 +1,12 @@
+const express = require('express');
 const homeController = require('../app/http/controllers/homeController')
 const authController = require('../app/http/controllers/authController')
 const cartController = require('../app/http/controllers/customers/cartController')
 const orderController = require('../app/http/controllers/customers/orderController')
 const adminOrderController = require('../app/http/controllers/admin/orderController')
 const statusController = require('../app/http/controllers/admin/statusController')
-const adminPizzaController = require('../app/http/controllers/admin/pizzaController')
+const pizzaController = require('../app/http/controllers/admin/pizzaController')
+const adminController = require('../app/http/controllers/admin/adminController')
 
 // Middlewares 
 const guest = require('../app/http/middlewares/guest')
@@ -28,12 +30,19 @@ function initRoutes(app) {
     app.get('/customer/orders/:id', auth, orderController().show)
 
     // Admin routes
-    app.get('/admin/pizza', admin, adminPizzaController().show)
-    app.get('/admin/action/create', admin, adminPizzaController().create)
-    app.post('/admin/pizza/store', admin, adminPizzaController().store)
-    app.delete('admin/pizza/:id', admin, adminPizzaController().delete)
+    app.get('/admin/stored/pizza', admin, adminController().show)
+
+    // Pizza routes
+    app.get('/food/create', admin, pizzaController().create)
+    app.post('/food/store', pizzaController().store)
+    app.get('/food/:id/edit/', pizzaController().edit)
+    app.put('/food/:id', pizzaController().update)
+    app.delete('/food/:id', pizzaController().delete)
+
+    // Orders routes
     app.get('/admin/orders', admin, adminOrderController().index)
     app.post('/admin/order/status', admin, statusController().update)
+
 }
 
 module.exports = initRoutes

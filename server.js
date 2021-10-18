@@ -1,5 +1,7 @@
 require('dotenv').config()
 const express = require('express')
+const methodOverride = require('method-override')
+const morgan = require('morgan')
 const app = express()
 const ejs = require('ejs')
 const path = require('path')
@@ -12,6 +14,10 @@ const MongoDbStore = require('connect-mongo')(session)
 const passport = require('passport')
 const Emitter = require('events')
 
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Database connection
 mongoose.connect(process.env.MONGO_CONNECTION_URL, { useNewUrlParser: true, useCreateIndex:true, useUnifiedTopology: true, useFindAndModify : true });
 const connection = mongoose.connection;
@@ -21,6 +27,13 @@ connection.once('open', () => {
     console.log('Connection failed...')
 });
 
+
+//log
+app.use(morgan('combined'));
+
+
+//override using a query value
+app.use(methodOverride('_method'))
 
 // Session store
 let mongoStore = new MongoDbStore({
@@ -90,4 +103,5 @@ eventEmitter.on('orderUpdated', (data) => {
 eventEmitter.on('orderPlaced', (data) => {
     io.to('adminRoom').emit('orderPlaced', data)
 })
+
 
