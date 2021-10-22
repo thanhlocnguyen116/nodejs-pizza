@@ -11,16 +11,20 @@
                         <img class="w-24" src="/img/<%= pizza.item.image %>" alt="">
                         <div class="flex-1 ml-4">
                             <h1>
-                                <%= pizza.item.name %>
+                                Name: <%= pizza.item.name %>
                             </h1>
+                            <hr>
                             <span>
-                                <%= pizza.item.size %>
+                                Size: <%= pizza.item.size %>
                             </span>
                         </div>
-                        <span class="flex-1">
+                        <span class="flex-1 text-center">
                             <%= pizza.qty %> Pcs
                         </span>
-                        <span class="font-bold text-lg">$ <%= pizza.item.price * pizza.qty %></span>
+                        <span class="font-bold text-lg mr-12">$ <%= pizza.item.price * pizza.qty %></span>
+                        <button data-pizza="<%= JSON.stringify(pizza) %>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full delete-form-cart">
+                            <i class="las la-ban"></i>
+                        </button>
                     </div>
                     <% } %>
 

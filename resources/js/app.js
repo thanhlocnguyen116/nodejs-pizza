@@ -6,6 +6,7 @@
 
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
+//let deleteFromCart = document.querySelectorAll('.delete-form-cart')
 
 function updateCart(pizza) {
     axios.post('/update-cart', pizza).then(res => {
@@ -16,11 +17,13 @@ function updateCart(pizza) {
             text: 'Item added to cart',
             progressBar: false,
         }).show();
-    }).catch(err => {
+        console.log(deleteFromCart)
+    }
+    ).catch(err => {
         new Noty({
             type: 'error',
             timeout: 1000,
-            text: 'Something went wrong',
+            text: 'You must login to buy pizza',
             progressBar: false,
         }).show();
     })
@@ -32,6 +35,7 @@ addToCart.forEach((btn) => {
         updateCart(pizza)
     })
 })
+
 
 // Remove alert message after X seconds
 const alertMsg = document.querySelector('#success-alert')
