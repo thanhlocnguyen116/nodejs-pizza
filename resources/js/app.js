@@ -6,20 +6,47 @@
 
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
-//let deleteFromCart = document.querySelectorAll('.delete-form-cart')
+let deleteFromCart = document.querySelectorAll('.delete-form-cart')
+
+deleteFromCart.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        console.log(e)
+        //let pizza = JSON.parse(btn.dataset.pizza)
+        //console.log(pizza)
+        //deleteCart(pizza)
+    })
+})
+
+// function deleteCart(pizza){
+//     axios.delete(pizza).then((res) =>{
+//         cartCounter.innerText = res.data.totalQty
+//         new Noty({
+//             type: 'success',
+//             timeout: 1000,
+//             text: 'Item delete from cart',
+//             progressBar: false,
+//         }).show()
+//     }).catch((err) => {
+//         new Noty({
+//             type: 'error',
+//             timeout: 1000,
+//             text: 'wrong',
+//             progressBar: false,
+//         }).show();
+//     })
+// }
 
 function updateCart(pizza) {
-    axios.post('/update-cart', pizza).then(res => {
+    axios.post('/update-cart', pizza).then((res) => {
         cartCounter.innerText = res.data.totalQty
         new Noty({
             type: 'success',
             timeout: 1000,
             text: 'Item added to cart',
             progressBar: false,
-        }).show();
-        console.log(deleteFromCart)
+        }).show()
     }
-    ).catch(err => {
+    ).catch((err) => {
         new Noty({
             type: 'error',
             timeout: 1000,
@@ -28,6 +55,8 @@ function updateCart(pizza) {
         }).show();
     })
 }
+
+
 
 addToCart.forEach((btn) => {
     btn.addEventListener('click', (e) => {
